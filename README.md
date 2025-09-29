@@ -18,8 +18,8 @@ ticket-bot/
 │   │   └── ready.js
 │   ├── utils/
 │   │   └── ticketManager.js
-│   ├── events/
-│   └── events/
+│   ├── config.json
+│   └── index.js
 ├── .env
 ├── .gitignore
 ├── package.json
@@ -57,17 +57,15 @@ Rename the `.env.example` file to `.env` and add the required info:
 TOKEN=your_bot_token_here
 CLIENT_ID=your_client_id_here
 GUILD_ID=your_guild_id_here
-SUPPORT_CHANNEL_ID=your_support_channel_id_here
-TICKET_CATEGORY_ID=your_ticket_category_id_here
-TICKET_LOGS_CHANNEL_ID=your_ticket_logs_channel_id_here
-STAFF_ROLE_ID=your_staff_role_id_here
-PARTNERSHIP_ROLE_ID=your_partnership_role_id_here
 ```
 ⚠️ Don't share this. It's excluded from version control via `.gitignore`.
 
-### 4. Run the Bot
+### 4. Configure the Bot
+Rename the `config.json.example` file to `config.json` and add the required info for your server
+
+### 5. Run the Bot
 ```bash
-node index.js
+node src/index.js
 ```
 
 ---

@@ -14,14 +14,14 @@ class TicketBot extends Client {
                 GatewayIntentBits.MessageContent
             ]
         });
-        
+       
         // Set max listeners to prevent warnings
         this.setMaxListeners(0);
-        
+       
         this.commands = new Collection();
         this.tickets = new Collection();
         this.config = config;
-        
+       
         this.init();
     }
 
@@ -33,62 +33,55 @@ class TicketBot extends Client {
 
     loadCommands() {
         const commandsPath = path.join(__dirname, 'commands');
-        const commandFolders = fs.readdirSync(commandsPath);
-        
-        for (const folder of commandFolders) {
-            const folderPath = path.join(commandsPath, folder);
-            if (!fs.statSync(folderPath).isDirectory()) continue;
-            
-            const commandFiles = fs.readdirSync(folderPath).filter(file => file.endsWith('.js'));
-            
-            for (const file of commandFiles) {
-                const filePath = path.join(folderPath, file);
-                const command = require(filePath);
-                
-                if (command.data && command.execute) {
-                    this.commands.set(command.data.name, command);
-                }
+        const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+       
+        for (const file of commandFiles) {
+            const filePath = path.join(commandsPath, file);
+            const command = require(filePath);
+           
+            if (command.data && command.execute) {
+                this.commands.set(command.data.name, command);
             }
         }
-        
+       
         console.log(`🎟️ Loaded ${this.commands.size} commands`);
     }
 
     loadEvents() {
         const eventsPath = path.join(__dirname, 'events');
         const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
-        
+       
         for (const file of eventFiles) {
             const filePath = path.join(eventsPath, file);
             const event = require(filePath);
-            
+           
             if (event.once) {
                 this.once(event.name, (...args) => event.execute(...args, this));
             } else {
                 this.on(event.name, (...args) => event.execute(...args, this));
             }
         }
-        
+       
         console.log(`🎟️ Loaded ${eventFiles.length} events`);
     }
 
     async deployCommands() {
         const commands = [];
-        
+       
         this.commands.forEach(command => {
             commands.push(command.data.toJSON());
         });
 
         const rest = new REST().setToken(process.env.TOKEN);
-        
+       
         try {
             console.log(`🎟️ Refreshing ${commands.length} global commands...`);
-            
+           
             const data = await rest.put(
                 Routes.applicationCommands(process.env.CLIENT_ID),
                 { body: commands }
             );
-            
+           
             console.log(`🎟️ Successfully loaded ${data.length} global commands`);
         } catch (error) {
             console.error('❌ Error deploying commands:', error);

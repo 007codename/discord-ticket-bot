@@ -28,7 +28,7 @@ class TicketBot extends Client {
     async init() {
         this.loadCommands();
         this.loadEvents();
-        await this.login(process.env.TICKET_TOKEN);
+        await this.login(process.env.TOKEN);
     }
 
     loadCommands() {
@@ -79,13 +79,13 @@ class TicketBot extends Client {
             commands.push(command.data.toJSON());
         });
 
-        const rest = new REST().setToken(process.env.TICKET_TOKEN);
+        const rest = new REST().setToken(process.env.TOKEN);
         
         try {
             console.log(`🎟️ Refreshing ${commands.length} global commands...`);
             
             const data = await rest.put(
-                Routes.applicationCommands(process.env.TICKET_CLIENT_ID),
+                Routes.applicationCommands(process.env.CLIENT_ID),
                 { body: commands }
             );
             

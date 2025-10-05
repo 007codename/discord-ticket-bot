@@ -2,7 +2,7 @@ const { ActivityType } = require('discord.js');
 const TicketManager = require('../managers/TicketManager');
 
 module.exports = {
-    name: 'clientReady',
+    name: 'ready',
     once: true,
     async execute(client) {
         console.log(`🎟️ ${client.user.tag} is online!`);

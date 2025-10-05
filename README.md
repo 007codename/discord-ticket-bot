@@ -12,12 +12,17 @@ ticket-bot/
 │   ├── commands/
 │   │   └── ticket.js
 │   │   └── close.js
+│   │   └── add.js
+│   │   └── remove.js
 │   │   └── ping.js
+│   │
 │   ├── events/
 │   │   └── interactionCreate.js
 │   │   └── ready.js
+│   │
 │   ├── utils/
 │   │   └── ticketManager.js
+│   │
 │   ├── config.json
 │   └── index.js
 ├── .env

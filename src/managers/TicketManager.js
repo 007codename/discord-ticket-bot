@@ -312,8 +312,12 @@ class TicketManager {
                 console.error('Error determining ticket details:', error);
             }
 
-            // Get added users from channel topic
-            const addedUserIds = channel.topic ? channel.topic.split(',').filter(id => id.trim()) : [];
+            // Get added users from in-memory cache (FAST!)
+            const addedUserIds = this.client.ticketAddedUsers.has(channel.id) 
+                ? Array.from(this.client.ticketAddedUsers.get(channel.id))
+                : [];
+
+            console.log(`📋 Added user IDs from cache: ${addedUserIds.join(', ') || 'none'}`);
 
             // Create transcript
             const transcript = await this.createTranscript(channel);
@@ -337,6 +341,9 @@ class TicketManager {
 
             // Log to logs channel
             await this.logTicketClosure(channel, interaction.user, transcript, ticketType);
+
+            // Clean up cache
+            this.client.ticketAddedUsers.delete(channel.id);
 
             // Countdown and delete
             for (let i = 3; i > 0; i--) {

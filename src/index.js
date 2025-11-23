@@ -2,6 +2,7 @@ const { Client, GatewayIntentBits, Collection, REST, Routes } = require('discord
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
+
 const config = require('./config.json');
 
 class TicketBot extends Client {
@@ -22,8 +23,7 @@ class TicketBot extends Client {
         this.tickets = new Collection();
         this.config = config;
         
-        // Initialize cache for tracking added users
-        this.ticketAddedUsers = new Map();
+        // Note: ticketAddedUsers is now handled by TicketUsersManager (persistent)
         
         this.init();
     }

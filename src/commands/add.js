@@ -11,7 +11,6 @@ module.exports = {
     
     async execute(interaction, client) {
         await interaction.deferReply({ flags: 64 });
-
         const channel = interaction.channel;
         const user = interaction.options.getUser('user');
         
@@ -37,14 +36,8 @@ module.exports = {
                 EmbedLinks: true
             });
             
-            // Use in-memory cache instead of channel topic (MUCH FASTER)
-            if (!client.ticketAddedUsers.has(channel.id)) {
-                client.ticketAddedUsers.set(channel.id, new Set());
-            }
-            client.ticketAddedUsers.get(channel.id).add(user.id);
-            
-            console.log(`✅ User ${user.tag} added to ticket ${channel.name}`);
-            console.log(`📋 Current added users: ${Array.from(client.ticketAddedUsers.get(channel.id)).join(', ')}`);
+            // Use persistent database (survives restarts)
+            await client.ticketUsersManager.addUser(channel.id, user.id);
             
             await interaction.editReply({
                 content: `✅ ${user} has been added to this ticket!`

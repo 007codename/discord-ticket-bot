@@ -13,6 +13,7 @@ ticket-bot/
 │   │   └── ticket.js
 │   │   └── close.js
 │   │   └── add.js
+│   │   └── positions.js
 │   │   └── remove.js
 │   │   └── ping.js
 │   │
@@ -21,7 +22,9 @@ ticket-bot/
 │   │   └── ready.js
 │   │
 │   ├── utils/
-│   │   └── ticketManager.js
+│   │   └── PositionsManager.js
+│   │   └── TicketManager.js
+│   │   └── TicketUsersManager.js
 │   │
 │   ├── config.json
 │   └── index.js
@@ -39,6 +42,7 @@ ticket-bot/
 - Multiple ticket types
 - `/ticket` and `/close` slash commands
 - Lightweight and modular structure
+- Easy hiring positions management
 - Uses `.env` for easy configuration
 
 ---

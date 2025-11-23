@@ -11,7 +11,6 @@ module.exports = {
     
     async execute(interaction, client) {
         await interaction.deferReply({ flags: 64 });
-
         const channel = interaction.channel;
         const user = interaction.options.getUser('user');
         
@@ -48,18 +47,8 @@ module.exports = {
         try {
             await channel.permissionOverwrites.delete(user);
             
-            // Remove from in-memory cache (INSTANT)
-            if (client.ticketAddedUsers.has(channel.id)) {
-                client.ticketAddedUsers.get(channel.id).delete(user.id);
-                
-                // Clean up empty sets
-                if (client.ticketAddedUsers.get(channel.id).size === 0) {
-                    client.ticketAddedUsers.delete(channel.id);
-                }
-            }
-            
-            console.log(`✅ User ${user.tag} removed from ticket ${channel.name}`);
-            console.log(`📋 Remaining added users: ${client.ticketAddedUsers.has(channel.id) ? Array.from(client.ticketAddedUsers.get(channel.id)).join(', ') : 'none'}`);
+            // Remove from persistent database
+            await client.ticketUsersManager.removeUser(channel.id, user.id);
             
             await interaction.editReply({
                 content: `✅ ${user} has been removed from this ticket!`

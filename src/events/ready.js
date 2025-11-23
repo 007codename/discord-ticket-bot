@@ -1,5 +1,7 @@
 const { ActivityType } = require('discord.js');
 const TicketManager = require('../managers/TicketManager');
+const PositionsManager = require('../managers/PositionsManager');
+const TicketUsersManager = require('../managers/TicketUsersManager');
 
 module.exports = {
     name: 'ready',
@@ -19,6 +21,26 @@ module.exports = {
         }
 
         try {
+            // Initialize ticket users manager
+            client.ticketUsersManager = new TicketUsersManager(client);
+            await client.ticketUsersManager.initialize();
+            console.log('🎟️  Ticket users manager initialized');
+        } catch (error) {
+            console.error('🎟️ ❌ Error initializing ticket users manager:', error);
+            hasErrors = true;
+        }
+
+        try {
+            // Initialize positions manager
+            client.positionsManager = new PositionsManager(client);
+            await client.positionsManager.initialize();
+            console.log('🎟️  Positions manager initialized');
+        } catch (error) {
+            console.error('🎟️ ❌ Error initializing positions manager:', error);
+            hasErrors = true;
+        }
+
+        try {
             // Initialize ticket manager
             client.ticketManager = new TicketManager(client);
             console.log('🎟️  Ticket manager initialized');
@@ -34,6 +56,13 @@ module.exports = {
         const ticketSetupSuccess = await setupTicketSystem(client);
         if (!ticketSetupSuccess) {
             hasErrors = true;
+        }
+        
+        // Restore ticket cache after restart
+        try {
+            await client.ticketManager.restoreTicketCache();
+        } catch (error) {
+            console.error('🎟️ ❌ Error restoring ticket cache:', error);
         }
         
         console.log('🎟️  Bot initialization complete!');

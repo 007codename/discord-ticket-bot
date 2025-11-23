@@ -1,159 +1,140 @@
 {
-    "bot": {
-        "name": "Ticket Pilot",
-        "version": "2.0.0",
-        "developer": "@007codename"
+  "bot": {
+    "name": "Ticket Pilot"
+  },
+  "channels": {
+    "support": "support_channel_id_here",
+    "ticketCategory": "ticket_category_id_here",
+    "ticketLogs": "ticket_logs_channel_id_here"
+  },
+  "roles": {
+    "staff": "staff_role_id_here",
+    "partnership": "partnership_manager_role_id_here",
+    "devPointsManager": "dev_points_manager_role_id_here",
+    "verificationTeam": "verification_team_role_id_here",
+    "hr": "hr_role_id_here"
+  },
+  "tickets": {
+    "types": {
+      "support": {
+        "label": "General Support",
+        "description": "Get help with general issues",
+        "emoji": "❓",
+        "role": "staff"
+      },
+      "report": {
+        "label": "Report",
+        "description": "Report a user or issue",
+        "emoji": "🚨",
+        "role": "staff"
+      },
+      "partnership": {
+        "label": "Partnership",
+        "description": "Discuss partnership opportunities",
+        "emoji": "🤝",
+        "role": "partnership"
+      },
+      "devpoints": {
+        "label": "Dev Points Request",
+        "description": "Request points for development contributions",
+        "emoji": "⭐",
+        "role": "devPointsManager"
+      },
+      "verification": {
+        "label": "Developer Verification",
+        "description": "Request developer verification status",
+        "emoji": "✅",
+        "role": "verificationTeam"
+      },
+      "hiring": {
+        "label": "Apply for Position",
+        "description": "Apply for available positions in our team",
+        "emoji": "💼",
+        "role": "hr"
+      }
     },
-    "channels": {
-        "support": "support_channel_id_here",
-        "ticketCategory": "ticket_category_id_here",
-        "ticketLogs": "ticket_logs_channel_id_here"
-    },
-    "roles": {
-        "staff": "staff_role_id_here",
-        "partnership": "partnership_manager_role_id_here",
-        "devPointsManager": "dev_points_manager_role_id_here",
-        "verificationTeam": "verification_team_role_id_here",
-        "hr": "hr_role_id_here"
-    },
-    "tickets": {
-        "types": {
-            "support": {
-                "label": "General Support",
-                "description": "Get help with general issues",
-                "emoji": "❓",
-                "role": "staff"
-            },
-            "report": {
-                "label": "Report",
-                "description": "Report a user or issue",
-                "emoji": "🚨",
-                "role": "staff"
-            },
-            "partnership": {
-                "label": "Partnership",
-                "description": "Discuss partnership opportunities",
-                "emoji": "🤝",
-                "role": "partnership"
-            },
-            "devpoints": {
-                "label": "Dev Points Request",
-                "description": "Request points for development contributions",
-                "emoji": "⭐",
-                "role": "devPointsManager"
-            },
-            "verification": {
-                "label": "Developer Verification",
-                "description": "Request developer verification status",
-                "emoji": "✅",
-                "role": "verificationTeam"
-            },
-            "hiring": {
-                "label": "Apply for Position",
-                "description": "Apply for available positions in our team",
-                "emoji": "💼",
-                "role": "hr"
-            }
-        },
-        "embed": {
-            "title": "🎟️ Open a Ticket",
-            "description": "Need help, want to report something, or looking to partner with us? Select a category below and we'll get back to you shortly. Your request stays private between you and our team.",
-            "thumbnail": "your_thumbnail_url_here",
-            "color": "#006AD7"
-        }
-    },
-    "hiring": {
-        "positions": {
-            "Moderation Team": [
-                {
-                    "role": "@Head Moderator",
-                    "roleId": "head_moderator_role_id_here",
-                    "status": "offline",
-                    "description": "Currently not available"
-                },
-                {
-                    "role": "@Moderator",
-                    "roleId": "moderator_role_id_here",
-                    "status": "online",
-                    "description": "Unpaid"
-                },
-                {
-                    "role": "@Helper",
-                    "roleId": "helper_role_id_here",
-                    "status": "online",
-                    "description": "Unpaid"
-                }
-            ],
-            "Development Team": [
-                {
-                    "role": "@Reputation Manager",
-                    "roleId": "reputation_manager_role_id_here",
-                    "status": "offline",
-                    "description": "Currently not available"
-                },
-                {
-                    "role": "@Developer Liaison",
-                    "roleId": "developer_liaison_role_id_here",
-                    "status": "online",
-                    "description": "Unpaid"
-                }
-            ],
-            "Marketing Team": [
-                {
-                    "role": "@Content Creator",
-                    "roleId": "content_creator_role_id_here",
-                    "status": "online",
-                    "description": "Unpaid"
-                },
-                {
-                    "role": "@Graphic Designer",
-                    "roleId": "graphic_designer_role_id_here",
-                    "status": "idle",
-                    "description": "Unpaid"
-                },
-                {
-                    "role": "@Partnerships Manager",
-                    "roleId": "partnerships_manager_role_id_here",
-                    "status": "online",
-                    "description": "Unpaid"
-                },
-                {
-                    "role": "@Advertiser",
-                    "roleId": "advertiser_role_id_here",
-                    "status": "online",
-                    "description": "Unpaid"
-                }
-            ]
-        },
-        "emojis": {
-            "online": "<:emoji_name_here:emoji_id_here>",
-            "idle": "<:emoji_name_here:emoji_id_here>",
-            "offline": "<:emoji_name_here:emoji_id_here>"
-        }
-    },
-    "presence": {
-        "activities": [
-            {
-                "text": "📩 your tickets",
-                "type": "Watching"
-            },
-            {
-                "text": "🎫 /ticket",
-                "type": "Listening"
-            },
-            {
-                "text": "over the server",
-                "type": "Watching"
-            },
-            {
-                "text": "DEV: @007codename",
-                "type": "Custom"
-            },
-            {
-                "text": "💬 support requests",
-                "type": "Watching"
-            }
-        ],
-        "interval": 15000
+    "embed": {
+      "title": "🎟️ Open a Ticket",
+      "description": "Need help, want to report something, or looking to partner with us? Select a category below and we'll get back to you shortly. Your request stays private between you and our team.",
+      "thumbnail": "your_thumbnail_url_here",
+      "color": "#006AD7"
     }
+  },
+  "hiring": {
+    "emojis": {
+      "online": "<a:online:emoji_id_here>",
+      "idle": "<a:idle:emoji_id_here>",
+      "offline": "<a:offline:emoji_id_here>"
+    },
+    "departments": {
+      "Leadership": {
+        "emoji": "👑",
+        "roles": {
+          "Head Moderator": "head_moderator_role_id_here",
+          "Chief Marketing Officer": "cmo_role_id_here",
+          "Operations Director": "operations_director_role_id_here",
+          "Reputation Manager": "reputation_manager_role_id_here",
+          "Human Resources": "hr_role_id_here"
+        }
+      },
+      "Management": {
+        "emoji": "🛡️",
+        "roles": {
+          "Head Moderator": "head_moderator_role_id_here",
+          "Moderator": "moderator_role_id_here",
+          "Helper": "helper_role_id_here"
+        }
+      },
+      "Marketing": {
+        "emoji": "📢",
+        "roles": {
+          "Chief Marketing Officer": "cmo_role_id_here",
+          "Content Creator": "content_creator_role_id_here",
+          "Graphic Designer": "graphic_designer_role_id_here",
+          "Partnership Manager": "partnership_manager_role_id_here",
+          "Advertiser": "advertiser_role_id_here"
+        }
+      },
+      "Operations": {
+        "emoji": "⚙️",
+        "roles": {
+          "Operations Director": "operations_director_role_id_here",
+          "Event Coordinator": "event_coordinator_role_id_here",
+          "Technical Assistant": "technical_assistant_role_id_here"
+        }
+      },
+      "Developer Relations": {
+        "emoji": "💻",
+        "roles": {
+          "Reputation Manager": "reputation_manager_role_id_here",
+          "Developer Liaison": "developer_liaison_role_id_here"
+        }
+      }
+    }
+  },
+  "presence": {
+    "activities": [
+      {
+        "text": "📩 your tickets",
+        "type": "Watching"
+      },
+      {
+        "text": "🎫 /ticket",
+        "type": "Listening"
+      },
+      {
+        "text": "over the server",
+        "type": "Watching"
+      },
+      {
+        "text": "DEV: 007codename",
+        "type": "Custom"
+      },
+      {
+        "text": "💬 support requests",
+        "type": "Watching"
+      }
+    ],
+    "interval": 15000
+  }
 }

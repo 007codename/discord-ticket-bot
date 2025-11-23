@@ -46,6 +46,12 @@ module.exports = {
             
             // Handle select menus
             if (interaction.isStringSelectMenu()) {
+                // Check if it's a positions command select menu
+                if (interaction.customId.startsWith('select_')) {
+                    // These are handled by the positions command itself via awaitMessageComponent
+                    return;
+                }
+
                 switch (interaction.customId) {
                     case 'ticket_menu':
                         const ticketType = interaction.values[0];
